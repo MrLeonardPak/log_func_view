@@ -1,2 +1,2 @@
-PYTHON SCRIPTS
+PYTHON SCRIPT
 need: matplotlib    pyserial
