@@ -34,7 +34,7 @@ def run(data):
     rx = ser.read(size=2)
     while rx!=title:
         rx = ser.read(size=2)
-    rx = ser.read(size=4)
+    rx = ser.read(size=8)
     # Настроить деление для передачи вещественных чисел (1000 - оптимально)
     x = int.from_bytes(rx[0:2], 'little')/1000
     y1 = int.from_bytes(rx[2:4], 'little')/1000
