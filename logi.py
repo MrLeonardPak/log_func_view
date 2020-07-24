@@ -9,19 +9,20 @@ import serial
 
 def init():
     # Установить необходимые границы x y координаты каждого графика
-    ax[0].set_ylim(0, 3.3)
+    ax[0].set_ylim(-3.3, 3.3)
     ax[0].set_xlim(0, 10)
 
-    ax[1].set_ylim(0, 3.3)
+    ax[1].set_ylim(-3.3, 3.3)
     ax[1].set_xlim(0, 10)
     
-    ax[2].set_ylim(0, 3.3)
+    ax[2].set_ylim(-3.3, 3.3)
     ax[2].set_xlim(0, 10)
     
     del xdata[:]
     del ymain[:]
     del yintegral[:]
     del ydiff[:]
+
 
     line_main.set_data(xdata, ymain)
     line_integral.set_data(xdata, yintegral)
@@ -36,10 +37,10 @@ def run(data):
         rx = ser.read(size=2)
     rx = ser.read(size=8)
     # Настроить деление для передачи вещественных чисел (1000 - оптимально)
-    x = int.from_bytes(rx[0:2], 'little')/1000
-    y1 = int.from_bytes(rx[2:4], 'little')/1000
-    y2 = int.from_bytes(rx[4:6], 'little')/1000
-    y3 = int.from_bytes(rx[6:8], 'little')/1000
+    x = int.from_bytes(rx[0:2], 'little', signed=True)/1000
+    y1 = int.from_bytes(rx[2:4], 'little', signed=True)/1000
+    y2 = int.from_bytes(rx[4:6], 'little', signed=True)/1000
+    y3 = int.from_bytes(rx[6:8], 'little', signed=True)/1000
     
     xdata.append(x)
     ymain.append(y1)
